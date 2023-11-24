@@ -1,0 +1,14 @@
+{
+  "name": "backend",
+  "version": "1.0.0",
+  "description": "Esta carpeta contiene la parte del servidor para el proyecto de un gestor de hoteles",
+  "main": "index.js",
+  "scripts": {
+    "test": "npm start"
+  },
+  "author": "Juan David Castro Laynez",
+  "license": "ISC",
+  "dependencies": {
+    "express": "^4.18.2"
+  }
+}
