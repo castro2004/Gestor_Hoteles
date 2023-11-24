@@ -4,11 +4,27 @@
   "description": "Esta carpeta contiene la parte del servidor para el proyecto de un gestor de hoteles",
   "main": "index.js",
   "scripts": {
-    "test": "npm start"
+    "test": "echo \"Error: no test specified\" && exit 1",
+    "start": "nodemon index.js"
   },
   "author": "Juan David Castro Laynez",
   "license": "ISC",
   "dependencies": {
-    "express": "^4.18.2"
+    "bcrypt": "^5.1.1",
+    "bcryptjs": "^2.3.3",
+    "body-parser": "^1.20.1",
+    "connect-multiparty": "^2.2.0",
+    "cors": "^2.8.5",
+    "dotenv": "^16.3.1",
+    "express": "^4.18.2",
+    "express-validator": "^6.14.2",
+    "jsonwebtoken": "^9.0.0",
+    "jwt-simple": "^0.5.6",
+    "moment": "^2.29.4",
+    "mongoose": "^6.8.3",
+    "nodemailer": "^6.9.1",
+    "nodemon": "^2.0.22",
+    "populate": "^5.0.1",
+    "req": "^0.1.4"
   }
 }
