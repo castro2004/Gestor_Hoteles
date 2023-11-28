@@ -8,11 +8,15 @@ const Schema = mongoose.Schema;
 const userSchema = new Schema({
     user: {
         type: String,
-        required: true
+        required: true,
+        unique: true
     },
     email:  {
         type: String,
-        required: true
+        required: true,
+        unique: true,
+        //match => para indicar el valor necesario para que el correo
+        match: /^[^\s@]+@[^\s@]+\.[^\s@]+$/
     },
     rol: {
         type: String,
@@ -22,6 +26,7 @@ const userSchema = new Schema({
     cellPhone: {
         type: Number,
         required: true,
+        unique: true
     },
     token: {
         type: String,
