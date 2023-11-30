@@ -12,7 +12,7 @@ const roomSchema = new Schema({
         type: Boolean,
         required: true,
     },
-    diaReservation: {
+    dayReservation: {
         type: Date,
         required: false,
     },

@@ -18,6 +18,10 @@ const userSchema = new Schema({
         //match => para indicar el valor necesario para que el correo
         match: /^[^\s@]+@[^\s@]+\.[^\s@]+$/
     },
+    password: {
+        type: String,
+        required: true
+    },
     rol: {
         type: String,
         enum: ['USER','ADMIN'],

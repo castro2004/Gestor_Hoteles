@@ -16,11 +16,6 @@ const createUser = async(req, res) => {
             msg: "Debes ingresar un email valido"
         })
     }
-        if(!'@'){
-            return res.status(404).json({
-                msg: 'Falta el valor @'
-            })
-        }
 
         if(!password){
             return res.status(404).json({
@@ -121,12 +116,84 @@ const deleteUser = async(req, res) => {
     }
 }
 
+//----------------------------------------------login (administrador - usuario)-----------------------
+
+const login = async(req, res) => {
+    try{
+        const {email, password} = req.body;
+
+        const user = await User.findOne({email})
+
+        if(!user){
+            return res.status(404).json({
+                error: 'Correo invalido'
+            });
+        }
+
+        const isPasswordValid = await bcrypt.compare(password, user.password);
+        
+        if(!isPasswordValid){
+            return res.status(404).json({
+                msg: 'Contraseña incorrecta'
+            });
+        }
+
+        const token = jwt.sign({userId: user._id}, 'mi_secreto', {expiresIn: '10h'});
+        
+        user.token = token
+        await user.save();
+
+        res.json({
+            msg: 'Usuario autenticado exitosamente',
+            token
+        });
+
+    }catch(err){
+        console.log(err)
+    }
+}
+
+//---------------------------------------------------List by user---------------------------------------------------------
+
+const viewDataUser = async(req, res) => {
+    
+    try{
+
+        const token = req.headers['token']
+
+        if(!token){
+            return res.status(404).json({
+                msg: 'Acceso no autorizado'
+            });
+        }
+
+        const user = await User.findOne({token});
+
+        if(!user){
+            return res.status(404).json({
+                msg: 'Usuario no encontrado'
+            })
+        }else{
+            return res.status(404).json({
+                msg: 'Los datos del usuario son:',
+                usuario: user
+            })
+        }
+
+    }catch(err){
+        console.log(err)
+    }
+
+}
+
 
 module.exports = {
     createUser,
     readUser,
     updateUser,
-    deleteUser
+    deleteUser,
+    login,
+    viewDataUser
 }
 
 
