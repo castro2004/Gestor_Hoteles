@@ -1,18 +1,28 @@
+//Modelo para los salones
+
 'use strict'
 
 const mongoose = require('mongoose')
 const Schema = mongoose.Schema;
 
 const loungeSchema = new Schema({
-    nameLounge: {
-        type: String,
+    numberLounge: {
+        type: Number,
         required: true,
+    },
+    typeLounge:{
+        type: String,
+        enum: ['EMPRESARIAL', 'CELEBRACIONES', 'CULTURALES', 'GASTRONOMICOS', 'SOLIDARIOS', 'TEMATICOS']
+    },
+    reservationTime: {
+        type: String,
+        enum: ['MAÑANA', 'TARDE NOCHE', 'NOCHE'],
     },
     availability:{
         type: Boolean,
-        required: true,
+        default: true,
     },
-    diaReservation: {
+    dayReservation: {
         type: Date,
         required: false,
     },
@@ -22,7 +32,7 @@ const loungeSchema = new Schema({
     },
     price: {
         type: Number,
-        required: true
+        required: false
     }
 })
 

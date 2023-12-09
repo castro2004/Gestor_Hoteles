@@ -4,9 +4,17 @@ const mongoose = require('mongoose')
 const Schema = mongoose.Schema;
 
 const roomSchema = new Schema({
-    nameRoom: {
+    numberRoom: {
         type: String,
         required: true,
+    },
+    typeRoom: {
+        type: String,
+        enum: ['SUITE', 'JUNIOR SUITE', 'GRAN SUITE', 'INDIVIDUAL', 'DOBLE', 'CUADRUPLES'],
+    },
+    reservationTime: {
+        type: String,
+        enum: ['MAÑANA', 'TARDE NOCHE', 'NOCHE'],
     },
     availability:{
         type: Boolean,
@@ -22,7 +30,7 @@ const roomSchema = new Schema({
     },
     price: {
         type: Number,
-        required: true
+        required: false
     }
 })
 
