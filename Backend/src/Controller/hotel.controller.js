@@ -99,8 +99,44 @@ const deleteHotel = async(req, res) => {
     }
 }
 
+//----------------------------------------listado por pais-----------------------------------------------------------------
+
+const readHotelCity = async (req, res) => {
+    try {
+        
+        const pais = req.body.pais;
+
+        // Si no se proporciona el parámetro del país, devuelve un error
+        if (!pais) {
+            return res.status(400).json({
+                msg: 'Por favor, proporciona el parámetro del país en el cuerpo de la solicitud.',
+            });
+        }
+
+        // Utiliza el método populate para obtener todos los datos de room y lounge asociados al hotel
+        const hotels = await Hotel.find({ pais: pais });
+
+        if (!hotels || hotels.length === 0) {
+            return res.status(404).json({
+                msg: `No hay hoteles disponibles en la lista para el país: ${pais}`,
+            });
+        } else {
+            return res.status(200).json({
+                msg: `Lista de hoteles en ${pais}`,
+                lista_hoteles: hotels,
+            });
+        }
+
+    } catch (err) {
+        console.error(err);
+        return res.status(500).json({
+            msg: 'Error interno del servidor',
+        });
+    }
+};
+
 module.exports = {
-    createHotel, readHotel, updateHotel, deleteHotel
+    createHotel, readHotel, updateHotel, deleteHotel, readHotelCity
 }
 
 

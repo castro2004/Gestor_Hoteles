@@ -8,6 +8,14 @@ const hotelSchema = new Schema({
         type: String,
         required: true,
     },
+    pais: {
+        type: String,
+        enum: ['España', 'Francia', 'Reino Unido']
+    },
+    ciudad:{
+        type: String,
+        required: true
+    },
     room: [{
         type: mongoose.Schema.Types.ObjectId,
         ref: 'Room'
