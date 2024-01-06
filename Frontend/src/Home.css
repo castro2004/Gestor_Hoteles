@@ -3,7 +3,7 @@ body {
   min-height: 3000px;
   padding: 0;
   margin: 0;
-  font-family: 'Open Sans', sans-serif;
+  font-family: 'Montserrat', sans-serif;
 }
 
 .container {
@@ -92,3 +92,27 @@ nav {
     display: block;
   }
 }
+
+.title {
+  text-transform: uppercase;
+  text-align: center;
+  font-weight: 800;
+  font-size: 200%;
+  color: #000000;
+  margin-top: -1350px;
+  font-family: 'Montserrat', sans-serif;
+}
+
+.infoEmpresa {
+  padding: 20px; /* Añade un espacio interno para mayor claridad */
+  background-color: #f5f5f5; /* Fondo gris claro para resaltar el mensaje */
+  border-radius: 10px; /* Esquinas redondeadas para un aspecto más amigable */
+  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1); /* Sutil sombra para destacar el mensaje */
+  text-align: center; /* Centra el texto */
+  font-size: 18px; /* Tamaño de fuente más grande para destacar el mensaje */
+  line-height: 1.5; /* Espaciado entre líneas para una mejor legibilidad */
+  color: #333; /* Color de texto más oscuro para contrastar con el fondo */
+  margin-top: 2%;
+}
+
+

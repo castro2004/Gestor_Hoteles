@@ -44,26 +44,58 @@ const createUser = async(req, res) => {
 
 //----------------------------------------------User-List---------------------------------
 
-const readUser = async(req, res) => {
-    try{
+const readUser = async (req, res) => {
+    try {
+        const { token } = req.body;
 
-        const users = await User.find();
-
-        if(!users){
-            return res.status(404).json({
-                msg: "No se encontro la lista de usuarios"
+        // Verificar si se proporciona el token
+        if (!token) {
+            return res.status(400).json({
+                msg: "Se requiere un token para acceder a la lista de usuarios"
             });
-        }else{
-            return res.status(404).json({
-                msg: "La lista de usuarios es la siguiente: ",
-                lista_usuario: users
-            })
         }
 
-    }catch(err){
-        console.log(err)
+        // Buscar usuario por token
+        const user = await User.findOne({ token });
+
+        // Verificar si se encontró un usuario con el token
+        if (!user) {
+            return res.status(404).json({
+                msg: "Usuario no encontrado con el token proporcionado"
+            });
+        }
+
+        // Verificar si el usuario tiene rol ADMIN
+        if (user.rol !== 'ADMIN') {
+            return res.status(403).json({
+                msg: "Acceso no autorizado, el usuario no tiene rol de ADMIN"
+            });
+        }
+
+        // Obtener la lista de usuarios
+        const users = await User.find();
+
+        // Verificar si se encontraron usuarios
+        if (users.length === 0) {
+            return res.status(404).json({
+                msg: "No se encontró la lista de usuarios"
+            });
+        } else {
+            return res.status(200).json({
+                msg: "Lista de usuarios:",
+                lista_usuario: users
+            });
+        }
+
+    } catch (err) {
+        console.log(err);
+        return res.status(500).json({
+            msg: "Error en el servidor"
+        });
     }
 }
+
+
 
 //---------------------------------------------user-edit---------------------------------------
 
@@ -138,20 +170,26 @@ const login = async(req, res) => {
             });
         }
 
-        const token = jwt.sign({userId: user._id}, 'mi_secreto', {expiresIn: '10h'});
+        // Obtener el rol del usuario
+        const userRole = user.rol;
+
+        const token = jwt.sign({userId: user._id, role: userRole}, 'mi_secreto', {expiresIn: '10h'});
         
         user.token = token
         await user.save();
 
         res.json({
             msg: 'Usuario autenticado exitosamente',
-            token
+            token,
+            rol: userRole
         });
 
-    }catch(err){
+    } catch(err){
         console.log(err)
     }
 }
+
+
 
 //---------------------------------------------------List by user---------------------------------------------------------
 

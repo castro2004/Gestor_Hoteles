@@ -16,6 +16,9 @@ const hotelSchema = new Schema({
         type: String,
         required: true
     },
+    photo: {
+        type: String
+    },
     room: [{
         type: mongoose.Schema.Types.ObjectId,
         ref: 'Room'
