@@ -1,70 +1,47 @@
-    /* ReadHotel.css */
+.carta_read_hotel {
+    box-shadow: 0 4px 8px 0 rgba(0,0,0,0.2);
+    transition: 0.3s;
+    width: 399px;
+    border-radius: 3% 3%;
+    background-color: rgb(255, 255, 255);
+    font-size: 20px;
+}
 
-    body{
-        font-family: 'Montserrat', sans-serif;
-    }
+.card:hover {
+    box-shadow: 0 8px 16px 0 rgba(0,0,0,0.2);
+}
 
-    .read-hotel-container {
-        max-width: 600px;
-        margin: 0 auto;
-        padding: 20px;
-        border: 1px solid #ccc;
-        border-radius: 8px;
-        box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
-        margin-top: 2%;
-        font-size: 65%;
-    }
+.container {
+    padding: px 1px 20px 5px; /* Modifica el espacio de relleno según tus preferencias */
+}
 
-    .hotel-container {
-        max-width: 600px;
-        margin: 0 auto;
-        padding: 20px;
-        border: 1px solid #ccc;
-        border-radius: 8px;
-        box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
-        margin-top: 2%;
-        font-size: 50%;
-    }
-    
-    label {
-        display: block;
-        margin-bottom: 10px;
-    }
-    
-    select {
-        width: 100%;
-        padding: 8px;
-        margin-bottom: 20px;
-    }
-    
-    .error-message {
-        color: #ff0000;
-        margin-bottom: 10px;
-    }
-    
-    ul {
-        list-style: none;
-        padding: 0;
-    }
-    
-    li {
-        margin-bottom: 20px;
-    }
-    
-    strong {
-        color: #007bff;
-        font-size: 1.2em;
-    }
-    
-    /* Estilos para los datos del hotel */
-    li strong {
-        display: block;
-        color: #333;
-        font-size: 1.1em;
-        margin-bottom: 5px;
-    }
-    
-    li span {
-        color: #777;
-    }
-    
+img {
+    width:  100%;
+    height: 51%;
+    border-radius: 3%;
+    margin-top: 0.4px ;
+    margin-left: 0.3px;
+}
+
+.hotel-list {
+    display: flex;
+    flex-wrap: wrap;
+    margin-left: 4%;
+}
+
+.carta_read_hotel {
+    box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.2);
+    transition: 0.3s;
+    width: 399px;
+    border-radius: 3% 3%;
+    background-color: rgb(255, 255, 255);
+    margin: 10px; /* Agrega margen entre las tarjetas */
+}
+
+.title_relleno{
+    color: rgb(97, 97, 226);
+}
+
+.container-margin{
+    margin-top: -1300px;
+}

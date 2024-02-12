@@ -67,18 +67,18 @@ const Login = () => {
         />
         <div className="login_option">
           <a href="#" className="account">
-            <i className="fa-brands fa-google" style={{ color: '#000000' }}>
-              <img src={git} width={25} alt="Google" />
+            <i className="fa-brands fa-google" style={{ color: '#000000', fontSize: '20px' }}>
+              <img src={git} alt="Google" style={{ width: '20px', height: '20px' }} />
             </i>
           </a>
           <a href="#" className="account">
-            <i className="fa-brands fa-github" style={{ color: '#000000' }}>
-              <img src={google} width={25} alt="GitHub" />
+            <i className="fa-brands fa-github" style={{ color: '#000000', fontSize: '20px' }}>
+              <img src={google} alt="GitHub" style={{ width: '20px', height: '20px' }} />
             </i>
           </a>
           <a href="#" className="account">
-            <i className="fa-brands fa-twitter" style={{ color: '#000000' }}>
-              <img src={x} width={25} alt="Twitter" />
+            <i className="fa-brands fa-twitter" style={{ color: '#000000', fontSize: '20px' }}>
+              <img src={x} alt="Twitter" style={{ width: '20px', height: '20px' }} />
             </i>
           </a>
         </div>

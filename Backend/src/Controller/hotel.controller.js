@@ -168,13 +168,15 @@ const addImageHotel = async(req, res) =>  {
 
             //Actualizar al hotel
             const hotelUpdate = await Hotel.findOneAndUpdate(
-                {_id: tireId},
+                {_id: hotelId},
                 {photo: fileName},
                 {new: true})
 
             if(!hotelUpdate) return res.status(404).send({
                 msg: 'No se encontro el hotel para actualizar'
             })
+
+            console.log(hotelUpdate)
 
             return res.status(200).send({
                 msg: 'Imagen agregada al hotel',
@@ -211,8 +213,12 @@ const getImgeHotel = async(req, res) => {
         const fileName = hotelFind.photo;
         const pathFile = './upload/hotels/' + fileName;
         const image = fs.existsSync(pathFile);
-        if(!image) return 'Imagen no disponible'
-        return res.status(200).sendFile(path.resolve(pathFile))
+        if(!image){
+            return 'No se encontro image'
+        }else{
+            return res.status(200).sendFile(path.resolve(pathFile))
+        }
+        
         
 
     }catch(err){
@@ -222,25 +228,39 @@ const getImgeHotel = async(req, res) => {
     }
 }
 
+//-----------------------------------habitaciones por hotel ----------------------
 
-module.exports = {
-    createHotel, readHotel, updateHotel, deleteHotel, readHotelCity, addImageHotel, getImgeHotel
+const roomByHotel = async (req, res) => {
+    try {
+        const hotelId = req.body.hotelId
+
+        const hotel = await Hotel.findById(hotelId).populate('room');
+
+        if (!hotel) {
+            throw new Error('Hotel no encontrado');
+        }
+
+        const habitaciones = hotel.room || []; // Si hotel.room es null, asigna un array vacío
+
+        return res.status(200).json({
+            habitaciones: habitaciones
+        });
+
+    } catch (error) {
+        console.error(`Error al obtener las habitaciones: ${error.message}`);
+        return res.status(500).json({ error: error.message });
+    }
 }
 
 
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
+module.exports = {
+    createHotel, 
+    readHotel,
+    updateHotel, 
+    deleteHotel, 
+    readHotelCity, 
+    addImageHotel, 
+    getImgeHotel, 
+    roomByHotel    
+}
 

@@ -1,7 +1,7 @@
 'use strict'
 
 const {Router} = require('express');
-const { createHotel, readHotel, updateHotel, deleteHotel, readHotelCity, getImgeHotel, addImageHotel } = require('../Controller/hotel.controller');
+const { createHotel, readHotel, updateHotel, deleteHotel, readHotelCity, getImgeHotel, addImageHotel, roomByHotel } = require('../Controller/hotel.controller');
 
 const connetMultiparty = require('connect-multiparty')
 const upload =  connetMultiparty({uploadDir: './upload/hotels'})
@@ -17,6 +17,9 @@ api.get('/hoteles/:pais', readHotelCity);
 //Manejo de imagenes
 api.put('/add-image', [upload], addImageHotel)
 api.get('/view-image/:hotelId', getImgeHotel)
+
+//Manejo de habitaciones
+api.get('/view-room-hotel', roomByHotel);
 
 
 module.exports = api;

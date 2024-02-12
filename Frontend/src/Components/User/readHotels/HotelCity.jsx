@@ -1,69 +1,52 @@
-// ReadHotel.js
-
 import { useState, useEffect } from 'react';
 import axios from 'axios';
+
 import './ReadHotel.css';
+import Navbar from '../NavbarUser/navbarUser';
 
-const ReadHotel = () => {
-  const [pais, setPais] = useState('');
+
+const HotelList = () => {
   const [hotels, setHotels] = useState([]);
-  const [error, setError] = useState(null);
-
-  const handlePaisChange = (e) => {
-    setPais(e.target.value);
-  };
-
-  const fetchHotels = async () => {
-    try {
-      const response = await axios.get(`http://localhost:3010/api/hoteles/${pais}`);
-      setHotels(response.data.lista_hoteles);
-      setError(null);
-    } catch (err) {
-      setError('Error al obtener la lista de hoteles');
-    }
-  };
 
   useEffect(() => {
-    if (pais) {
-      fetchHotels();
-    }
-  }, [pais]);
+    const fetchHotels = async () => {
+      try {
+        const response = await axios.get('http://localhost:3010/api/read-hotel');
+        setHotels(response.data.lista_hoteles);
+      } catch (error) {
+        console.error('Error fetching hotels:', error);
+      }
+    };
+    fetchHotels();
+  }, []);
 
   return (
-    <div className="read-hotel-container">
-      <label htmlFor="pais">Selecciona un país:</label>
-      <select id="pais" onChange={handlePaisChange} value={pais}>
-        <option value="">Selecciona...</option>
-        <option value="España">España</option>
-        <option value="Francia">Francia</option>
-        <option value="Reino Unido">Reino Unido</option>
-      </select>
-
-      {error && <p className="error-message">{error}</p>}
-
-      {hotels && hotels.length > 0 && (
-        <div>
-          <h2>Lista de hoteles en {pais}:</h2>
-          <ul>
+    <div className='body_list_hotel_user'>
+      <Navbar/>
+      <div className='container-margin'>
+      <h2>Lista de Hoteles</h2>
+      <h4>Hoteles Disponibles:</h4>
+      <div className="hotel-list">
+        {hotels.length === 0 ? (
+          <p>No hay hoteles disponibles en la lista</p>
+        ) : (
+          <div className="hotel-list">
             {hotels.map((hotel) => (
-              <li key={hotel._id}>
-                <div className='read-hotel-container'>
-                {/* <div className='hotel-container'> */}
-                  <strong>Nombre del Hotel:</strong> {hotel.nameHotel}<br />
-                  <strong>Ciudad:</strong> {hotel.ciudad}<br />
-                  <strong>País:</strong> {hotel.pais}<br />
-                  <strong>Habitación:</strong> {hotel.room}<br />
-                  <strong>Sala de estar:</strong> {hotel.lounge}<br />
-                {/* </div> */}
+              <div key={hotel._id} className="carta_read_hotel">
+                <img src={`http://localhost:3010/api/view-image/${hotel._id}`} alt={hotel.nameHotel} />
+                <div className="container">
+                  <h3>{hotel.nameHotel}</h3>
+                  <p className='title_relleno'>Ciudad: {hotel.ciudad}</p>
+                  <p className='title_relleno'>País: {hotel.pais}</p>
                 </div>
-              </li>
+              </div>
             ))}
-          </ul>
-        </div>
-      )}
+          </div>
+        )}
+      </div>
+      </div>
     </div>
   );
-};
+}
 
-export default ReadHotel;
-
+export default HotelList;

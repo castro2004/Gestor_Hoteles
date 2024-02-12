@@ -1,10 +1,10 @@
 import { useState } from 'react';
 import { Link } from 'react-router-dom';
-import LoginHotel from './Components/User/login/login';
-import './Home.css';
-import CrearHotel from './Components/Admin/createHotels/CreateHotel';
+import LoginHotel from '../../User/login/login';
+import '../../../Home.css';
+import CrearHotel from '../createHotels/CreateHotel';
 
-function NavbarAdmin() {
+const  NavbarAdmin= () => {
     const [showCreateHotel, setShowCreateHotel] = useState(false);
     const [showLogin, setShowLogin] = useState(false);
 

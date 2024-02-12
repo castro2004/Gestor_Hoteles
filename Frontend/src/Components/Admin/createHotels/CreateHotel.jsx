@@ -1,7 +1,7 @@
 import { useState } from 'react';
 import axios from 'axios';
 import './CreateHotel.css'; 
-import NavbarAdmin from '../../../HomeAdmin';
+import NavbarAdmin from '../NavbarAdmin/HomeAdmin';
 
 const CrearHotel = () => {
   const [nombreHotel, setNombreHotel] = useState('');
