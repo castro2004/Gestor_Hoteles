@@ -137,7 +137,8 @@ const updateStatusLounge = async(req, res) => {
         }
 
         // Calcular la diferencia en días entre la fecha de inicio y la fecha de finalización
-        const diasTotales = Math.ceil((new Date(finalReservacion) - new Date(diaReservacion)) / (1000 * 60 * 60 * 24));
+        //.ceil aproximación de datos enteros 
+const diasTotales = Math.ceil((new Date(finalReservacion) - new Date(diaReservacion)) / (1000 * 60 * 60 * 24));
 
         // Verificar el tipo de habitación y asignar el precio base
         let precioBase = 0;
