@@ -1,0 +1,62 @@
+.card {
+  box-shadow: 0 4px 8px 0 rgba(0,0,0,0.2);
+  transition: 0.3s;
+  width: 34-px;
+  border-radius: 3% 3%;
+  background-color: rgb(255, 255, 255);
+  font-size: 20px;
+  }
+  
+  .card:hover {
+    box-shadow: 0 8px 16px 0 rgba(0,0,0,0.2);
+  }
+  
+  .container {
+    padding: px 1px 20px 5px; /* Modifica el espacio de relleno según tus preferencias */
+  }
+
+  body{
+  color: black;
+  font-size: 100%;
+  }
+  
+  img {
+    width:  99.8%;
+    height: 51%;
+    border-radius: 3%;
+    margin-top: 0.3px ;
+  }
+
+.list_admin_hotel{
+    font-size: 100%;
+  }
+
+.hotel_list {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 10px;
+}
+
+.carta_read_hotel{
+  flex: 1;
+  max-width: 300px;
+}
+  
+/* Agrega estilos para los botones de actualización */
+.button-update {
+  background-color: #4caf50; /* Color de fondo verde */
+  color: white;
+  padding: 10px 15px;
+  border: none;
+  border-radius: 5px;
+  cursor: pointer;
+}
+
+.button-cancel {
+  background-color: #f44336; /* Color de fondo rojo */
+  color: white;
+  padding: 10px 15px;
+  border: none;
+  border-radius: 5px;
+  cursor: pointer;
+}
